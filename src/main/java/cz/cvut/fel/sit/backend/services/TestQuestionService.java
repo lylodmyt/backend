@@ -42,10 +42,10 @@ public class TestQuestionService {
     public TestQuestionDto addQuestionToTest(Long testId, Long questionId){
         Optional<Test> test = testRepository.findById(testId);
         Optional<Question> question = questionRepository.findById(questionId);
-        if (test.isEmpty()){
+        if (!test.isPresent()){
             throw new EntityNotFoundException("Test with id: " + testId + "doesn't exist");
         }
-        if (question.isEmpty()){
+        if (!question.isPresent()){
             throw new EntityNotFoundException("Question with id: " + testId + "doesn't exist");
         }
         TestQuestion testQuestion = new TestQuestion();
@@ -59,7 +59,7 @@ public class TestQuestionService {
     @Transactional
     public TestQuestionDto removeQuestionFromTest(Long questionId){
         Optional<TestQuestion> testQuestion = repository.findById(questionId);
-        if (testQuestion.isEmpty()){
+        if (!testQuestion.isPresent()){
             throw new EntityNotFoundException("TestQuestion with id: " + questionId + "doesn't exist");
         }
         repository.delete(testQuestion.get());
@@ -72,9 +72,7 @@ public class TestQuestionService {
         if (test.isPresent()) {
             List<TestQuestion> testQuestions = test.get().getTestQuestions();
 
-            for (TestQuestion testQuestion : testQuestions) {
-                repository.delete(testQuestion);
-            }
+            repository.deleteAll(testQuestions);
         } else {
             throw new EntityNotFoundException("Test with id: " + testId + " not found");
         }

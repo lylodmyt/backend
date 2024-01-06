@@ -43,7 +43,7 @@ public class UserService {
 
     public UserDto updatePassword(UserDto userDto){
         Optional<User> user = userRepository.findByUsername(userDto.getUsername());
-        if (user.isEmpty()){
+        if (!user.isPresent()){
             throw new EntityNotFoundException("User with username: " + userDto.getUsername() + " not found");
         }
 

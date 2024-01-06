@@ -30,7 +30,7 @@ public class ImageServices {
     @Transactional
     public void addImageToQuestion(MultipartFile file, Long questionId) throws IOException {
         Optional<Question> question = questionRepository.findById(questionId);
-        if (question.isEmpty()) {
+        if (!question.isPresent()) {
             throw new EntityNotFoundException("Question with id: " + questionId + " doesn't exist");
         }
         Image image = repository.save(fileToImageEntity(file));
@@ -40,7 +40,7 @@ public class ImageServices {
 
     public Image getImageFromQuestion(Long questionId){
         Optional<Question> question = questionRepository.findById(questionId);
-        if (question.isEmpty()) {
+        if (!question.isPresent()) {
             throw new EntityNotFoundException("Question with id: " + questionId + " doesn't exist");
         }
         Image image = question.get().getImage();
@@ -53,7 +53,7 @@ public class ImageServices {
     @Transactional
     public void deleteImageFromQuestion(Long questionId){
         Optional<Question> question = questionRepository.findById(questionId);
-        if (question.isEmpty()) {
+        if (!question.isPresent()) {
             throw new EntityNotFoundException("Question with id: " + questionId + " doesn't exist");
         }
         if (question.get().getImage() != null){
@@ -66,7 +66,7 @@ public class ImageServices {
     @Transactional
     public void addImageToAnswer(MultipartFile file, Long answerId) throws IOException {
         Optional<Answer> answer = answerRepository.findById(answerId);
-        if (answer.isEmpty()) {
+        if (!answer.isPresent()) {
             throw new EntityNotFoundException("Question with id: " + answerId + " doesn't exist");
         }
         Image image = repository.save(fileToImageEntity(file));
@@ -76,7 +76,7 @@ public class ImageServices {
 
     public Image getImageFromAnswer(Long answerId){
         Optional<Answer> answer = answerRepository.findById(answerId);
-        if (answer.isEmpty()) {
+        if (!answer.isPresent()) {
             throw new EntityNotFoundException("Question with id: " + answerId + " doesn't exist");
         }
         Image image = answer.get().getImage();
@@ -89,7 +89,7 @@ public class ImageServices {
     @Transactional
     public void deleteImageFromAnswer(Long answerId){
         Optional<Answer> answer = answerRepository.findById(answerId);
-        if (answer.isEmpty()) {
+        if (!answer.isPresent()) {
             throw new EntityNotFoundException("Question with id: " + answerId + " doesn't exist");
         }
         if (answer.get().getImage() != null){
