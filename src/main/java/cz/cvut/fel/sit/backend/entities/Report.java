@@ -17,7 +17,7 @@ public class Report {
     @Column(name = "created_date")
     private Date createdAt;
     @ManyToOne
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "user_id")
     private User author;
 
     public String getTitle() {

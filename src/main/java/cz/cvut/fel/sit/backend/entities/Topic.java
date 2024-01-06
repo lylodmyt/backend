@@ -14,7 +14,7 @@ public class Topic {
     @Column(name = "title")
     private String title;
     @ManyToOne
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "user_id")
     private User user;
     @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
     private List<Question> questions = new ArrayList<>();

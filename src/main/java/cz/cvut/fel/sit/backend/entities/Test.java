@@ -19,7 +19,7 @@ public class Test {
     private boolean publish;
 
     @ManyToOne
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "test")

@@ -20,14 +20,14 @@ public class Question {
     private List<Answer> answers = new ArrayList<>();
 
     @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<TestQuestion> testQuestions;
+    private List<TestQuestion> testQuestions = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "image")
     private Image image;
 
     @ManyToOne
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Long getId() {

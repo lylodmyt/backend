@@ -1,7 +1,6 @@
 package cz.cvut.fel.sit.backend.entities;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "TQ_ANSWER")
