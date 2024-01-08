@@ -19,7 +19,7 @@ public class Topic {
     @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
     private List<Question> questions = new ArrayList<>();
 
-    @OneToMany(mappedBy = "parentTopic", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "parentTopic", fetch = FetchType.EAGER)
     private List<Topic> subTopics = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "parentTopic")
